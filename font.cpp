@@ -32,6 +32,10 @@ void Font::changeBackgroundColor(const QColor color) {
 
 }
 
+void Font::changeFont(const QString font) {
+    _textEdit->setFontFamily(font);
+}
+
 void Font::setTabStop(int tabStop) {
     _textEdit->setTabStopDistance(tabStop*10);
 

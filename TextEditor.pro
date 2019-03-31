@@ -29,13 +29,15 @@ SOURCES += \
         mainwindow.cpp \
     fileworker.cpp \
     font.cpp \
-    highlither.cpp
+    highlither.cpp \
+    compilation.cpp
 
 HEADERS += \
         mainwindow.h \
     fileworker.h \
     font.h \
-    highlither.h
+    highlither.h \
+    compilation.h
 
 FORMS += \
         mainwindow.ui

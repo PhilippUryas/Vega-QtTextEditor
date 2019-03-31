@@ -12,16 +12,16 @@ public:
 
     void changeBackgroundColor(const QColor color);
     void changeTextColor(const QColor color);
+    void changeFont(const QString font);
 
     void setTabStop(int tabStop);
     void setFontSize(int size);
 
-    void setItalic(bool italic);
-    //static void setB(bool b, QTextEdit *textEdit);
-    void setUnderLine(bool underline);
 
-    //QColor textColor;
-    //QColor backgroundColor;
+    //void setItalic(bool italic);
+    //static void setB(bool b, QTextEdit *textEdit);
+    //void setUnderLine(bool underline);
+
     int fontSizeNow;
     int tabStopSize;
 

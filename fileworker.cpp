@@ -39,12 +39,13 @@ void FileWorker::createFile(const QString &filepath) {
     qDebug() << lastFile;
 }
 
-void FileWorker::openFile(const QString &filepath) {
+void FileWorker::openFile(const QString &filepath, QTextCodec *qtc) {
     //SaveFile
     QFile file(filepath);
     file.open(QIODevice::ReadOnly);
 
     QTextStream fileStream(&file);
+    fileStream.setCodec(qtc);
     QString text = fileStream.readAll();
 
     file.close();

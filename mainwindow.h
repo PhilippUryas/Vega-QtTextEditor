@@ -16,15 +16,25 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 private slots:
+    //file
     void createFileSlot();
     void openFileSlot();
     void saveFileSlot();
 
+    //font
     void changeBackgroundColorSlot();
 
     void changeFontColorSlot();
     void changeFontSize();
     void changeTabStopSizeSlot();
+
+    void changeFontSlot();
+
+    //compile
+    void compileGppSlot();
+
+    //checkbox
+    void hightlightingSlot();
 
 public:
     Ui::MainWindow *ui;
@@ -32,9 +42,13 @@ public:
     ~MainWindow();
 
 private:
-    void setupHighlighting();
+
+    QString getFilePath();
+
     void setupHotkeys();
     void setupButtons();
+
+    const QString _labelName;
 
     Font *_font;
     FileWorker *_fileWorker;

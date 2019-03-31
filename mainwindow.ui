@@ -18,9 +18,9 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>0</y>
+      <y>20</y>
       <width>821</width>
-      <height>983</height>
+      <height>941</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -47,6 +47,19 @@
      <number>40</number>
     </property>
    </widget>
+   <widget class="QCheckBox" name="checkBoxHighlighting">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>109</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Highlighting</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -70,14 +83,22 @@
      <string>Text</string>
     </property>
     <addaction name="separator"/>
+    <addaction name="actionChange_font"/>
     <addaction name="actionChange_font_color"/>
     <addaction name="actionChange_font_size"/>
     <addaction name="actionChange_background_color"/>
     <addaction name="separator"/>
     <addaction name="actionSet_tab_stop"/>
    </widget>
+   <widget class="QMenu" name="menuCompile">
+    <property name="title">
+     <string>Compile</string>
+    </property>
+    <addaction name="actionCompile_gpp"/>
+   </widget>
    <addaction name="menuCreate"/>
    <addaction name="menuFont"/>
+   <addaction name="menuCompile"/>
   </widget>
   <action name="actionCreate_file">
    <property name="text">
@@ -117,6 +138,21 @@
   <action name="actionSet_tab_stop">
    <property name="text">
     <string>Set tab stop</string>
+   </property>
+  </action>
+  <action name="actionHighlite">
+   <property name="text">
+    <string>Highlite</string>
+   </property>
+  </action>
+  <action name="actionChange_font">
+   <property name="text">
+    <string>Change font</string>
+   </property>
+  </action>
+  <action name="actionCompile_gpp">
+   <property name="text">
+    <string>Compile gpp</string>
    </property>
   </action>
  </widget>
