@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->setWindowTitle("TextEditor");
 
-    _fileWorker = new FileWorker(ui->textEdit);
+    _fileWorker = new FileWorker();
 
     _font = new Font(ui->textEdit);
 
@@ -45,20 +45,20 @@ void MainWindow::setupButtons() {
 
     /* file */
     connect(ui->actionCreateFile, &QAction::triggered, this, &MainWindow::createFileSlot);
-    connect(ui->actionOpen_file, &QAction::triggered, this, &MainWindow::openFileSlot);
-    connect(ui->actionSave_file, &QAction::triggered, this, &MainWindow::saveFileSlot);
+    connect(ui->actionOpenFile, &QAction::triggered, this, &MainWindow::openFileSlot);
+    connect(ui->actionSaveFile, &QAction::triggered, this, &MainWindow::saveFileSlot);
 
     /* font */
-    connect(ui->actionChange_font, &QAction::triggered, this, &MainWindow::changeFontSlot);
-    connect(ui->actionChange_font_color, &QAction::triggered,  this, &MainWindow::changeFontColorSlot);
-    connect(ui->actionChange_font_size, &QAction::triggered, this, &MainWindow::changeFontSize);
-    connect(ui->actionSet_tab_stop, &QAction::triggered, this, &MainWindow::changeTabStopSizeSlot);
+    connect(ui->actionChangeFont, &QAction::triggered, this, &MainWindow::changeFontSlot);
+    connect(ui->actionChangeFontColor, &QAction::triggered,  this, &MainWindow::changeFontColorSlot);
+    connect(ui->actionChangeFontSize, &QAction::triggered, this, &MainWindow::changeFontSize);
+    connect(ui->actionSetTabStop, &QAction::triggered, this, &MainWindow::changeTabStopSizeSlot);
 
-    connect(ui->actionChange_background_color, &QAction::triggered,  this, &MainWindow::changeBackgroundColorSlot);
+    connect(ui->actionChangeBackgroundColor, &QAction::triggered,  this, &MainWindow::changeBackgroundColorSlot);
 
     /* compile */
 
-    connect(ui->actionCompile_gpp, &QAction::triggered, this, &MainWindow::compileGppSlot);
+    connect(ui->actionCompileGpp, &QAction::triggered, this, &MainWindow::compileGppSlot);
 
 }
 
@@ -103,7 +103,9 @@ void MainWindow::openFileSlot() {
                                                     "/home",
                                                     tr(""));
         if(filepath != "") {
-            _fileWorker->openFile(filepath, textCodec);
+
+            QString text = _fileWorker->openFile(filepath, textCodec);
+            ui->textEdit->setPlainText(text);
             this->setWindowTitle(filepath);
         }
     }
@@ -114,7 +116,8 @@ void MainWindow::saveFileSlot() {
                                                     "/home/test",
                                                     tr(""));
     if(filepath != "") {
-        _fileWorker->saveFile(filepath);
+        QString text = ui->textEdit->toPlainText();
+        _fileWorker->saveFile(filepath, text);
         this->setWindowTitle(filepath);
     }
 }

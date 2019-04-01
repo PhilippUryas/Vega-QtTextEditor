@@ -10,18 +10,15 @@
 class FileWorker
 {
 public:
-    FileWorker(QTextEdit *textEdit);
+    FileWorker();
     ~FileWorker();
     void createFile(const QString &filepath);
-    void saveFile(const QString &filepath);
-    void openFile(const QString &filepath, QTextCodec *qtc);
+    void saveFile(const QString &filepath, const QString &text);
+    QString openFile(const QString &filepath, QTextCodec *qtc);
 
     QString lastFile;
     //QString filename;
 
-private:
-
-    QTextEdit *_textEdit;
 };
 
 #endif // FILEWORKER_H

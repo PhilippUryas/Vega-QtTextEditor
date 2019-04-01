@@ -3,23 +3,20 @@
 
 #include <QDebug>
 
-FileWorker::FileWorker(QTextEdit *textEdit) {
-
-    _textEdit = textEdit;
+FileWorker::FileWorker() {
 }
 
 FileWorker::~FileWorker() {
-    delete _textEdit;
 }
 
-void FileWorker::saveFile(const QString &filepath) {
+void FileWorker::saveFile(const QString &filepath, const QString &text) {
 
     QFile file(filepath);
     file.open(QIODevice::WriteOnly);
 
     QTextStream fileStream(&file);
 
-    fileStream << _textEdit->toPlainText();
+    fileStream << text;
     file.flush();
     file.close();
 
@@ -39,7 +36,7 @@ void FileWorker::createFile(const QString &filepath) {
     qDebug() << lastFile;
 }
 
-void FileWorker::openFile(const QString &filepath, QTextCodec *qtc) {
+QString FileWorker::openFile(const QString &filepath, QTextCodec *qtc) {
     //SaveFile
     QFile file(filepath);
     file.open(QIODevice::ReadOnly);
@@ -50,8 +47,7 @@ void FileWorker::openFile(const QString &filepath, QTextCodec *qtc) {
 
     file.close();
 
-    _textEdit->setPlainText(text);
-
     lastFile = filepath;
-    qDebug() << lastFile;
+    return text;
+    //qDebug() << lastFile;
 }
