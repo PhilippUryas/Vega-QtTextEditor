@@ -11,7 +11,6 @@
 #include <QInputDialog>
 #include <QTextCodec>
 
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -26,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setupHotkeys();
     setupButtons();
+
 }
 
 void MainWindow::setupHotkeys() {
@@ -44,7 +44,7 @@ void MainWindow::setupButtons() {
     connect(ui->checkBoxHighlighting, &QCheckBox::toggled, this, &MainWindow::hightlightingSlot);
 
     /* file */
-    connect(ui->actionCreate_file, &QAction::triggered, this, &MainWindow::createFileSlot);
+    connect(ui->actionCreateFile, &QAction::triggered, this, &MainWindow::createFileSlot);
     connect(ui->actionOpen_file, &QAction::triggered, this, &MainWindow::openFileSlot);
     connect(ui->actionSave_file, &QAction::triggered, this, &MainWindow::saveFileSlot);
 
