@@ -13,8 +13,8 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
-{
+    ui(new Ui::MainWindow) {
+
     ui->setupUi(this);
 
     this->setWindowTitle("TextEditor");
@@ -57,7 +57,6 @@ void MainWindow::setupButtons() {
     connect(ui->actionChangeBackgroundColor, &QAction::triggered,  this, &MainWindow::changeBackgroundColorSlot);
 
     /* compile */
-
     connect(ui->actionCompileGpp, &QAction::triggered, this, &MainWindow::compileGppSlot);
 
 }

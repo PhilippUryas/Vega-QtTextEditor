@@ -16,13 +16,13 @@ Font::~Font() {
     delete _textEdit;
 }
 
-void Font::changeTextColor(const QColor color){
+void Font::changeTextColor(const QColor &color){
     _textEdit->setTextColor(color);
 
     fontColorNow = color;
 }
 
-void Font::changeBackgroundColor(const QColor color) {
+void Font::changeBackgroundColor(const QColor &color) {
     QPalette p = _textEdit->palette();
     p.setColor(QPalette::Base, color);
 
@@ -32,7 +32,7 @@ void Font::changeBackgroundColor(const QColor color) {
 
 }
 
-void Font::changeFont(const QString font) {
+void Font::changeFont(const QString &font) {
     _textEdit->setFontFamily(font);
 }
 

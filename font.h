@@ -10,9 +10,9 @@ public:
     Font(QTextEdit *textEdit);
     ~Font();
 
-    void changeBackgroundColor(const QColor color);
-    void changeTextColor(const QColor color);
-    void changeFont(const QString font);
+    void changeBackgroundColor(const QColor &color);
+    void changeTextColor(const QColor &color);
+    void changeFont(const QString &font);
 
     void setTabStop(int tabStop);
     void setFontSize(int size);
