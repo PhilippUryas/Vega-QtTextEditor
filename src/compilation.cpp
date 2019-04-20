@@ -13,3 +13,5 @@ void Compilation::compileGpp(QString filename) {
     system(compiler.toStdString().c_str());
     //qDebug() << compiler.toStdString().c_str();
 }
+
+
