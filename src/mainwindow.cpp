@@ -10,6 +10,7 @@
 #include <QColorDialog>
 #include <QInputDialog>
 #include <QTextCodec>
+#include <QFontDialog>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -47,18 +48,36 @@ void MainWindow::setupButtons() {
     connect(ui->actionCreateFile, &QAction::triggered, this, &MainWindow::createFileSlot);
     connect(ui->actionOpenFile, &QAction::triggered, this, &MainWindow::openFileSlot);
     connect(ui->actionSaveFile, &QAction::triggered, this, &MainWindow::saveFileSlot);
-
+    void changeFontSize();
     /* font */
-    connect(ui->actionChangeFont, &QAction::triggered, this, &MainWindow::changeFontSlot);
+    connect(ui->actionFontSetting, &QAction::triggered, this, &MainWindow::changeFontSlot);
     connect(ui->actionChangeFontColor, &QAction::triggered,  this, &MainWindow::changeFontColorSlot);
-    connect(ui->actionChangeFontSize, &QAction::triggered, this, &MainWindow::changeFontSize);
+    //connect(ui->actionChangeFontSize, &QAction::triggered, this, &MainWindow::changeFontSize);
+    connect(ui->actionVidelenieColor, &QAction::triggered, this, &MainWindow::changeVidelenieSlot);
     connect(ui->actionSetTabStop, &QAction::triggered, this, &MainWindow::changeTabStopSizeSlot);
 
     connect(ui->actionChangeBackgroundColor, &QAction::triggered,  this, &MainWindow::changeBackgroundColorSlot);
 
+    connect(ui->actionSetCodec, &QAction::triggered, this, &MainWindow::setCodecSlot);
     /* compile */
     connect(ui->actionCompileGpp, &QAction::triggered, this, &MainWindow::compileGppSlot);
 
+}
+
+void MainWindow::setCodecSlot() {
+    QStringList codecNames;
+    codecNames << tr("UTF-8") << tr("UTF-16") << tr("UTF-32")
+               << tr("KOI8-R") << tr("KOI8-U");
+
+    bool ok;
+
+    codec = QInputDialog::getItem(this, tr("Set codec"),
+                                          tr("Codec:"), codecNames,
+                                          0, false, &ok);
+}
+
+void MainWindow::changeVidelenieSlot() {
+    _font->changeFontVidelenie(QColorDialog::getColor(_font->fontVidelenieNow, this));
 }
 
 void MainWindow::hightlightingSlot() {
@@ -89,7 +108,7 @@ void MainWindow::openFileSlot() {
 
     bool ok;
 
-    const QString codec = QInputDialog::getItem(this, tr("Set codec"),
+    codec = QInputDialog::getItem(this, tr("Set codec"),
                                           tr("Codec:"), codecNames,
                                           0, false, &ok);
 
@@ -131,16 +150,6 @@ void MainWindow::changeFontColorSlot() {
 
 }
 
-void MainWindow::changeFontSize() {
-    bool ok;
-    int size = QInputDialog::getInt(this, tr("Font size"),
-                                    tr("Font size: "), _font->fontSizeNow, 0, 100, 1, &ok);
-    if(ok) {
-        _font->setFontSize(size);
-    }
-
-}
-
 void MainWindow::changeTabStopSizeSlot() {
     bool ok;
     int size = QInputDialog::getInt(this, tr("Font size"),
@@ -151,16 +160,12 @@ void MainWindow::changeTabStopSizeSlot() {
 }
 
 void MainWindow::changeFontSlot() {
-    QStringList fonts;
-    fonts << tr("Ubuntu") << tr("Times New Roman");
 
     bool ok;
 
-    const QString font = QInputDialog::getItem(this, tr("Set font"),
-                                          tr("Font:"), fonts,
-                                          0, false, &ok);
+    QFont font = QFontDialog::getFont(&ok, QFont("Helvetica [Cronyx]", 10), this);
     if(ok) {
-        _font->changeFont(font);
+        ui->textEdit->setCurrentFont(font);
     }
 }
 

@@ -6,67 +6,51 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>821</width>
-    <height>983</height>
+    <width>274</width>
+    <height>261</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QTextEdit" name="textEdit">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>20</y>
-      <width>821</width>
-      <height>941</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="sizeAdjustPolicy">
-     <enum>QAbstractScrollArea::AdjustIgnored</enum>
-    </property>
-    <property name="lineWrapMode">
-     <enum>QTextEdit::WidgetWidth</enum>
-    </property>
-    <property name="lineWrapColumnOrWidth">
-     <number>0</number>
-    </property>
-    <property name="tabStopWidth">
-     <number>40</number>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="checkBoxHighlighting">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>109</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Highlighting</string>
-    </property>
-   </widget>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QCheckBox" name="checkBoxHighlighting">
+      <property name="text">
+       <string>Highlighting</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTextEdit" name="textEdit">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustIgnored</enum>
+      </property>
+      <property name="lineWrapMode">
+       <enum>QTextEdit::WidgetWidth</enum>
+      </property>
+      <property name="lineWrapColumnOrWidth">
+       <number>0</number>
+      </property>
+      <property name="tabStopWidth">
+       <number>40</number>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>821</width>
+     <width>274</width>
      <height>22</height>
     </rect>
    </property>
@@ -83,11 +67,12 @@
      <string>Text</string>
     </property>
     <addaction name="separator"/>
-    <addaction name="actionChangeFont"/>
+    <addaction name="actionFontSetting"/>
     <addaction name="actionChangeFontColor"/>
-    <addaction name="actionChangeFontSize"/>
     <addaction name="actionChangeBackgroundColor"/>
+    <addaction name="actionVidelenieColor"/>
     <addaction name="separator"/>
+    <addaction name="actionSetCodec"/>
     <addaction name="actionSetTabStop"/>
    </widget>
    <widget class="QMenu" name="menuCompile">
@@ -145,14 +130,24 @@
     <string>Highlite</string>
    </property>
   </action>
-  <action name="actionChangeFont">
+  <action name="actionFontSetting">
    <property name="text">
-    <string>Change font</string>
+    <string>Font setting</string>
    </property>
   </action>
   <action name="actionCompileGpp">
    <property name="text">
     <string>Compile gpp</string>
+   </property>
+  </action>
+  <action name="actionVidelenieColor">
+   <property name="text">
+    <string>Background color</string>
+   </property>
+  </action>
+  <action name="actionSetCodec">
+   <property name="text">
+    <string>Set codec</string>
    </property>
   </action>
  </widget>

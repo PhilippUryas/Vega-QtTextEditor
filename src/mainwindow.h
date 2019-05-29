@@ -25,10 +25,13 @@ private slots:
     void changeBackgroundColorSlot();
 
     void changeFontColorSlot();
-    void changeFontSize();
     void changeTabStopSizeSlot();
 
     void changeFontSlot();
+
+    void changeVidelenieSlot();
+
+    void setCodecSlot();
 
     //compile
     void compileGppSlot();
@@ -59,6 +62,7 @@ private:
     QShortcut *_ctrlS; //saveFileSlot
     QShortcut *_ctrlO; //openFileSlot
 
+    QString codec;
 };
 
 #endif // MAINWINDOW_H

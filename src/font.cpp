@@ -9,6 +9,7 @@ Font::Font(QTextEdit *textEdit) {
     tabStopSize = 4;
     backgroundColorNow = Qt::white;
     fontColorNow = Qt::black;
+    fontVidelenieNow = Qt::white;
 
 }
 
@@ -20,6 +21,12 @@ void Font::changeTextColor(const QColor &color){
     _textEdit->setTextColor(color);
 
     fontColorNow = color;
+}
+
+void Font::changeFontVidelenie(const QColor &color) {
+    _textEdit->setTextBackgroundColor(color);
+
+    fontVidelenieNow = color;
 }
 
 void Font::changeBackgroundColor(const QColor &color) {
