@@ -11,6 +11,7 @@
 #include <QInputDialog>
 #include <QTextCodec>
 #include <QFontDialog>
+#include <QTextStream>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -52,7 +53,7 @@ void MainWindow::setupButtons() {
     /* font */
     connect(ui->actionFontSetting, &QAction::triggered, this, &MainWindow::changeFontSlot);
     connect(ui->actionChangeFontColor, &QAction::triggered,  this, &MainWindow::changeFontColorSlot);
-    //connect(ui->actionChangeFontSize, &QAction::triggered, this, &MainWindow::changeFontSize);
+
     connect(ui->actionVidelenieColor, &QAction::triggered, this, &MainWindow::changeVidelenieSlot);
     connect(ui->actionSetTabStop, &QAction::triggered, this, &MainWindow::changeTabStopSizeSlot);
 
@@ -67,13 +68,20 @@ void MainWindow::setupButtons() {
 void MainWindow::setCodecSlot() {
     QStringList codecNames;
     codecNames << tr("UTF-8") << tr("UTF-16") << tr("UTF-32")
-               << tr("KOI8-R") << tr("KOI8-U");
+               << tr("KOI8-R") << tr("KOI8-U") << tr("IBM 866") << tr("CP949");
 
     bool ok;
 
-    codec = QInputDialog::getItem(this, tr("Set codec"),
+    QString codec = QInputDialog::getItem(this, tr("Set codec"),
                                           tr("Codec:"), codecNames,
                                           0, false, &ok);
+
+    QTextCodec *codecs = QTextCodec::codecForName(codec.toLocal8Bit());
+    QString str = ui->textEdit->toPlainText();
+    QTextStream in(codecs->fromUnicode(str), QIODevice::ReadOnly | QIODevice::Text);
+    ui->textEdit->setPlainText(in.readAll());
+
+
 }
 
 void MainWindow::changeVidelenieSlot() {
@@ -87,13 +95,13 @@ void MainWindow::hightlightingSlot() {
     else {
         delete _highlighter;
     }
-
 }
 
 void MainWindow::createFileSlot() {
     QString filepath = QFileDialog::getSaveFileName(this, tr("Save File"),
                                                     "/home/test",
                                                     tr(""));
+
     if(filepath != "") {
         _fileWorker->createFile(filepath);
         this->setWindowTitle(filepath);
@@ -104,11 +112,11 @@ void MainWindow::openFileSlot() {
 
     QStringList codecNames;
     codecNames << tr("UTF-8") << tr("UTF-16") << tr("UTF-32")
-               << tr("KOI8-R") << tr("KOI8-U");
+               << tr("KOI8-R") << tr("KOI8-U") << tr("IBM 866") << tr("CP949");
 
     bool ok;
 
-    codec = QInputDialog::getItem(this, tr("Set codec"),
+    QString codec = QInputDialog::getItem(this, tr("Set codec"),
                                           tr("Codec:"), codecNames,
                                           0, false, &ok);
 

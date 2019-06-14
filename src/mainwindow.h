@@ -61,8 +61,6 @@ private:
     //shortcuts
     QShortcut *_ctrlS; //saveFileSlot
     QShortcut *_ctrlO; //openFileSlot
-
-    QString codec;
 };
 
 #endif // MAINWINDOW_H

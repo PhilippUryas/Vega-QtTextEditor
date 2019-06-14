@@ -3,10 +3,7 @@
 #include <cstring>
 #include <QDebug>
 
-Compilation::Compilation()
-{
-
-}
+Compilation::Compilation() {}
 
 void Compilation::compileGpp(QString filename) {
  #ifndef _WIN32
